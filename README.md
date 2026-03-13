@@ -11,7 +11,45 @@ Using historical royalty data and given contract terms, I estimated a valuation 
 ### Business Problem:  
 An artist wants to get a loan or "advance" from a Record Label or a Securitization Company. Investor's will create a contract that allows for control of the rights to a music catalog. This will allow the investor to collect on any royalties the songs generate. In return, an investor will give a large lump sum to the artist with a predetermined repayment structure.  
 
-<img src="Assets/Music Royalties contract flowchart.png" alt="Music Royalty Contract Flowchart" width="500" height="500">
+```mermaid
+  flowchart LR;
+    
+    A1@{ shape: procs, label: "Music Royalties $"}
+      style A1 fill:#023020
+    A2@{ shape: procs, label: "Music Royalties $"}
+      style A2 fill:#023020
+    A3@{ shape: procs, label: "Music Royalties $"}
+      style A3 fill:#023020
+    B@{ shape: subproc, label: "Principal Amount"}
+      style B fill:#00008B
+    B2@{ shape: subproc, label: "Principal Amount"}
+      style B2 fill:#00008B
+    C1([Investor])
+    C2([Investor])
+    D([Payment Towards Principal])
+    E([Artist])
+    E2([Artist])
+    F@{ shape: paper-tape, label: "Contract"}
+      style F fill:white, color:black
+
+    B-- 0 Balance -->A2
+    B-- Unpaid Balance -->A1
+    A1-->D
+    A1-->C1
+    A2-->C2
+    A2-->E
+    F-- During Term -->B
+    F-- After Term --> B2
+    B2-- 0 Balance -->A3
+    B2-- Unpaid Balance -->A1
+    A3-->E2
+
+    linkStyle 2 stroke:green, stroke-width:5
+    linkStyle 3 stroke:red, stroke-width:5
+    linkStyle 4 stroke:red, stroke-width:3
+    linkStyle 5 stroke:green, stroke-width:7
+    linkStyle 10 stroke:green, stroke-width:10
+```
 
 **Questions**: How can we determine the "fairness" of lump sum amount? Is the investor paying what the catalog is actually valued at? What would the repayment structure look like with different terms?
 
